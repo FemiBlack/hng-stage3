@@ -9,7 +9,8 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 	<title>femiblack</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main.css" />
+	<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+	<title>HNGi8 Task 2- 2021</title>
 </head>
 <body class="is-preload">
 
@@ -20,7 +21,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 			<!-- Logo -->
 			<div id="logo">
-				<span class="image avatar48"><img src="images/avatar.jpg" alt="" /></span>
+				<span class="image avatar48"><img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="" /></span>
 				<h1 id="title">Femi Black</h1>
 				<p>Full-stack Web Developer</p>
 			</div>
@@ -87,13 +88,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 							<div class="row">
 								<div class="col-4 col-12-mobile">
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic02.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="{{ url_for('static', filename='images/pic02.jpg') }}" alt="" /></a>
 										<header>
 											<h3>Ipsum Feugiat</h3>
 										</header>
 									</article>
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic03.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="{{ url_for('static', filename='images/pic03.jpg') }}" alt="" /></a>
 										<header>
 											<h3>Rhoncus Semper</h3>
 										</header>
@@ -101,13 +102,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 								</div>
 								<div class="col-4 col-12-mobile">
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic04.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="{{ url_for('static', filename='images/pic04.jpg') }}" alt="" /></a>
 										<header>
 											<h3>Magna Nullam</h3>
 										</header>
 									</article>
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic05.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="{{ url_for('static', filename='images/pic05.jpg') }}" alt="" /></a>
 										<header>
 											<h3>Natoque Vitae</h3>
 										</header>
@@ -115,13 +116,13 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 								</div>
 								<div class="col-4 col-12-mobile">
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic06.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="{{ url_for('static', filename='images/pic06.jpg') }}" alt="" /></a>
 										<header>
 											<h3>Dolor Penatibus</h3>
 										</header>
 									</article>
 									<article class="item">
-										<a href="#" class="image fit"><img src="images/pic07.jpg" alt="" /></a>
+										<a href="#" class="image fit"><img src="{{ url_for('static', filename='images/pic07.jpg') }}" alt="" /></a>
 										<header>
 											<h3>Orci Convallis</h3>
 										</header>
@@ -201,7 +202,7 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 									<h2>About Me</h2>
 								</header>
 
-								<a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
+								<a href="#" class="image featured"><img src="{{url_for('static', filename='images/pic08.jpg') }}" alt="" /></a>
 
 								<p>I am a passionate and task-driven developer with an ample knowledge
 									 and experience in various stacks and technologies, always open to
@@ -223,10 +224,10 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 
 										<form method="post" action="#">
 											<div class="row">
-												<div class="col-6 col-12-mobile"><input type="text" name="name" placeholder="Name" /></div>
-												<div class="col-6 col-12-mobile"><input type="text" name="email" placeholder="Email" /></div>
+												<div class="col-6 col-12-mobile">{{ form.name(placeholder='Name') }}</div>
+												<div class="col-6 col-12-mobile">{{ form.email(placeholder='Email') }}</div>
 												<div class="col-12">
-													<textarea name="message" placeholder="Message"></textarea>
+													{{ form.message(placeholder='Message') }}
 												</div>
 												<div class="col-12">
 													<input type="submit" value="Send Message" />
@@ -250,13 +251,19 @@ Free for personal and commercial use under the CCA 3.0 license (html5up.net/lice
 							</div>
 
 							<!-- Scripts -->
-							<script src="assets/js/jquery.min.js"></script>
-							<script src="assets/js/jquery.scrolly.min.js"></script>
-							<script src="assets/js/jquery.scrollex.min.js"></script>
-							<script src="assets/js/browser.min.js"></script>
-							<script src="assets/js/breakpoints.min.js"></script>
-							<script src="assets/js/util.js"></script>
-							<script src="assets/js/main.js"></script>
+							<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+							<script src="{{ url_for('static', filename='js/jquery.scrolly.min.js') }}"></script>
+							<script src="{{ url_for('static', filename='js/jquery.scrollex.min.js') }}"></script>
+							<script src="{{ url_for('static', filename='js/browser.min.js') }}"></script>
+							<script src="{{ url_for('static', filename='js/breakpoints.min.js') }}"></script>
+							<script src="{{ url_for('static', filename='js/util.js') }}"></script>
+							<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+							<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
+							{% for message in get_flashed_messages() %}
+							<script>
+								swal('Info', message, 'success');
+							</script>
+							{% endfor %}
 						</body>
 						</html>
